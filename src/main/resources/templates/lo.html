@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.sencha.com/ext/gpl/4.2.1/resources/ext-theme-classic/ext-theme-classic-all.css" rel="stylesheet">
+    <script src="https://cdn.sencha.com/ext/gpl/4.2.1//ext-all.js"></script>
+<!--    <script type="text/javascript" src="../static/jquery-3.4.1.js"></script>-->
+
+</head>
+<script>
+
+    Ext.onReady(function (){
+      var form =  Ext.create('Ext.form.Panel',{
+            title:'文件上传',
+            width:400,
+            height:100,
+            frame:true,
+            renderTo:Ext.getBody(),
+        items:[
+            {
+                xtype:'filefield',
+                name:'file',
+                fieldLabel:'文件',
+                buttonText:'请选择',
+            },
+        ],
+            buttons:[
+                {
+                    text:'上传',
+                    handler:function (){
+                      if(form.isValid()){
+                          form.submit({
+                              method:'post',
+                              enctype:'multipart/form-data',
+                              url:'/upload',
+                              success:function (f,o){
+                                  Ext.Msg.alert('success','上传成功')
+                              },
+                              failure:function (f,o){
+                                  Ext.Msg.alert('上传失败',o.result.data)
+                              }
+                          });
+                      }
+                    },
+                },
+            ],
+
+        })
+
+
+    });
+</script>
+
+<body>
+欢迎进入lo4s页面ddssss<br>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://cdn.sencha.com/ext/gpl/4.2.1/resources/ext-theme-classic/ext-theme-classic-all.css" rel="stylesheet">
+    <script src="https://cdn.sencha.com/ext/gpl/4.2.1//ext-all.js"></script>
+</head>
+<script>
+        Ext.onReady(function (){
+            var formPanel = Ext.create('Ext.form.Panel', {
+                bodyPadding: 10,  // Don't want content to crunch against the borders
+                width: 350,
+                height:300,
+                title: 'Login',
+                renderTo:Ext.getBody(),
+                items: [
+                    {
+                    xtype: 'textfield',
+                    fieldLabel: '账号',
+                    name:'username',
+                    allowBlank:false,
+                        // blankText : '帐号不能为空'
+                        },
+                    {
+                    xtype: 'textfield',
+                    fieldLabel: '密码',
+                    name:'password',
+                    allowBlank:false,
+                        // blankText : '帐号不能为空'
+                      },
+                ],
+                buttons:[
+                    {
+                        text: 'Reset',
+                        handler: function () {
+                            this.up('form').getForm().reset();
+                        }
+                    },
+                    {
+                        text:'登录',
+                        handler:function (){
+                            var form = this.up('form').getForm();
+                            if(form.isValid()){
+                                form.submit({
+                                    url:'/checkLogin',
+                                    success : function (form,action){
+                                        if(action.result.success){
+                                            alert('成功'+action.result.data)
+                                            document.location.href="/userTree";
+                                        }
+                                    },
+                                    failure:function (form,action){
+                                        alert('失败-----')
+                                    },
+                                });
+                            }
+                        },
+                    },
+
+                ],
+
+
+            });
+
+        });
+
+</script>
+<body>
+
+545250
+</div>
+</body>
+</html>

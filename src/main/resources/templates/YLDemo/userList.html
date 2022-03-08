@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link href="https://cdn.sencha.com/ext/gpl/4.2.1/resources/ext-theme-classic/ext-theme-classic-all.css" rel="stylesheet">
+    <script src="https://cdn.sencha.com/ext/gpl/4.2.1//ext-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="../YLDemo/css/common.css" />
+    <script src="../YLDemo/UserListPanel.js"></script>
+    <script src="../YLDemo/app/view/UserGridPanel.js"></script>
+    <script src="../YLDemo/app/view/UserGridPanelZi.js"></script>
+<style type="text/css">
+</style>
+    <script>
+        function ok() {
+            alert("ok")
+            document.getElementById("easy").contentEditable=false;
+            var text  =document.getElementById("easy").textContent;
+            alert(text)
+        }
+        function double() {
+            document.getElementById("easy").contentEditable=true;
+        }
+    </script>
+</head>
+
+<body>
+<span ondblclick="double()" contenteditable="false" id="easy" style="background-color: white" >双击编辑的文本</span><br>
+
+<a onclick="ok()">确认</a><br>
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+
+server:
+  port: 8082
+
+
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+
+  web:
+    resources:
+      static-locations: classpath:templates/,classpath:static/
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.springdemo.com.entity
+
+logging:
+  file:
+    path: D:/IJProjects/SpringDemo/log_test
+
+person:
+  username: "张三"
+  password: "zhang"
+  age: "15"

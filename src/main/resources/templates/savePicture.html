@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+    <title>Title</title>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <style type="text/css">
+        #pic{
+            width: 400px;
+            height: 400px;
+            background-color: #5e96db;
+        }
+
+    </style>
+    <script>
+        function dian(){
+            var formData = new FormData(document.querySelector("form"));
+            // formData.append("file", document.getElementById("picFile").files[0]);
+            // formData.append("name",$("#username").val());
+            // formData.append("userinfo",$("#form").serialize());
+            // alert($("#username").val())
+
+            $.ajax({
+                url : "/savePicture",
+                type : "Post",
+                data : formData,
+                processData: false,
+                contentType: false,
+                success : function(data) {
+                   alert(data)
+                    $("#pic").append("<img src='../img/"+data+"'/>")
+                },
+                error : function(data) {
+                    alert("失败")
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+<h1>测试上传图片</h1>
+<form id="form"  method="post" enctype="multipart/form-data" name="formInfo">
+    选择图片:<input type="file" name="file" id="picFile">
+    账户：<input type="text" name="name" id="username">
+    账户：<input type="text" name="pwd" >
+    账户：<input type="text" name="sex" >
+<input type="submit">
+<a onclick="dian()">点我提交</a>
+
+   <img src="../img/error.jpg" height="200px" width="200px">
+
+    <div id="pic" >
+        <img src="D:/IJProjects/SpringDemo/src/main/resources/static/img/QQ截图20211210162132.jpg" height="200px" width="200px">
+
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tree</title>
+    <link href="https://cdn.sencha.com/ext/gpl/4.2.1/resources/ext-theme-classic/ext-theme-classic-all.css" rel="stylesheet">
+    <script src="https://cdn.sencha.com/ext/gpl/4.2.1//ext-all.js"></script>
+    <script src="user/app/ttt.js" type="text/javascript"></script>
+</head>
+<script>
+        function tree(){
+            var store = Ext.create('Ext.data.TreeStore',{
+                root:{
+                    expanded:true,
+                    children:[
+                        {text:"detention",leaf:false},
+                        {text:"homework",expanded:false,children:[
+                                {text:"book report",expanded:true,children:[
+                                        {text:"red",leaf:true},
+                                        {text:"green",leaf:true},
+                                    ]},
+                                {text:"algebra",leaf:true},
+                            ]},
+                        {text:"buy lottery tickets",expanded: true,children:[
+                                {text:"book report",leaf:true},
+                                {text:"this",expanded:true},
+                            ]}
+                    ],
+                },
+            })
+         var panel =    Ext.create('Ext.tree.Panel',{
+                title:'Simple Tree Title',
+                width:200,
+                height:200,
+                store:store,
+                rootVisible:false,
+                renderTo:Ext.getBody()
+            })
+        }
+
+</script>
+<script>
+  function two(){
+    Ext.Msg.prompt("name","请输入信息：",function (btn,text){
+       if(btn=='ok'){
+           alert("输入的是："+text)
+       }else{
+           alert("再见")
+       }
+    })
+
+    }
+
+    function three(){
+        Ext.Msg.show({
+            title:'Save Changes?',
+            msg: 'You are closing a tab that has unsaved changes. Would you like to save your changes?',
+            buttons: Ext.Msg.YESNOCANCEL,
+            icon: Ext.QUESTION
+        });
+    }
+</script>
+<script>
+    function re5() {
+        var testPanle = new Ext.Panel({
+            title: 'TestSimplePanel4',
+            width: 500, height: 200, renderTo: Ext.getBody(),
+            html: '<h1>You Will Get More Info From The Open Source!</h1>',
+            tbar: [
+                new Ext.Toolbar.TextItem("工具栏："),
+                { text: "添加" },
+                { xtype: "tbfill" },
+                { xtype: "tbseparator" },
+                { text: '保存' }
+            ]
+        });
+    }
+</script>
+<script>
+    function Read4() {
+         var MyPanel=new Ext.Panel({
+             layout:'form',
+             title:'表单布局',
+             renderTo:Ext.getBody(),
+             frame:true,
+             width:300,
+             height:200,
+             x:300,
+             y:50,
+             floating:true,
+             collapsible:true,
+             titleCollapse:true,
+             defaultType:'textfield',
+             labelSeparator:':',
+             defaults:{msgTarget:'side'},
+         items:[
+             {
+                 fieldLabel:'用户名称',
+             allowBlank:false
+         },
+         {
+             fieldLabel:'用户密码',
+                 allowBlank:false
+             }
+         ]
+         });
+         }
+</script>
+<script>
+    // Ext.onReady(function (){
+        Ext.create('Ext.form.Panel',{
+            title:'Simple Form',
+            bodyPadding:5,
+            width:350,
+            height:300,
+            url:'/test',
+            layout:'anchor',
+            renderTo:Ext.getBody(),
+            defaults:{
+                anchor:'100%'
+            },
+            defaultType:'textfineld',
+            items:[
+                {fieldLabel:'First Name',
+                name:'first',
+                allowBlank:false
+                },
+                {fieldLabel:'Last Name',
+                    name:'last',
+                    allowBlank:false
+                },
+                {
+                    xtype:'textarea',
+                    fieldLabel:'Last 00 Name',
+                    name:'last',
+                    allowBlank:false
+                },
+
+            ],
+            //设置Reset 和 Submit
+            buttons:[
+                {
+                    text:'Reset',
+                    handler:function (){
+                        this.up('form').getForm().reset();
+                    },
+                },
+                {
+                    text: 'Submit',
+                    formBind:true,
+                    disabled:true,
+                    handler:function (){
+                      var form = this.up('form').getForm();
+                      if(form.isvalid()){
+                          form.submit({
+                              success:function (form,action){
+                                  Ext.Msg.alert('Success',action.result.msg);
+                              },
+                              failure:function (form,action){
+                                  Ext.Msg.alert('fail',action.result.msg);
+                              },
+                          });
+                      }
+                    },
+                }
+            ],
+
+
+        });
+
+    // )
+</script>
+<script>
+    Ext.onReady(function () {
+        Ext.create('Ext.form.Panel', {
+            title: 'Simple Form',
+            bodyPadding: 5,
+            width: 350,
+
+            // The form will submit an AJAX request to this URL when submitted
+            url: '/test',
+
+            // Fields will be arranged vertically, stretched to full width
+            layout: 'anchor',
+            defaults: {
+                anchor: '100%'
+            },
+
+            // The fields
+            defaultType: 'textfield',
+            items: [{
+                fieldLabel: 'First Name',
+                name: 'first',
+                allowBlank: false
+            }, {
+                fieldLabel: 'Last Name',
+                name: 'last',
+                allowBlank: false
+            },
+        {
+            xtype:'textarea',
+            fieldLabel:'Last 00 Name',
+            name:'last',
+            allowBlank:false,
+            id:'tit'
+        },
+            ],
+            // Reset and Submit buttons
+            buttons: [{
+                text: 'Reset',
+                handler: function () {
+                    this.up('form').getForm().reset();
+                }
+            },
+                {
+                    text: 'test',
+                    handler: function () {
+                        var line = Ext.getCmp('tit').getValue();
+                        alert(line.length)
+                    }
+                },
+                {
+                text: 'Submit',
+                formBind: true, //only enabled once the form is valid
+                disabled: true,
+                handler: function () {
+                    var form = this.up('form').getForm();
+                    if (form.isValid()) {
+                        alert("这是啥？"+form)
+                        form.submit({
+                            success: function (form,action,text) {
+                                alert('素材测'+text)
+                                Ext.Msg.alert('Success', form.result.msg);
+                            },
+                            failure: function (form, action) {
+                                alert('是啊比')
+                                Ext.Msg.alert('Failed', action.result.msg);
+                            }
+                        });
+                    }
+                }
+            }],
+            renderTo: Ext.getBody()
+        });
+    });
+</script>
+<body>
+<a th:href="@{http://www.baidu.com}">绝对路径</a>
+<p>name：<span th:text="${name}"></span></p>
+欢迎进入logins页面
+<ul>
+    <li onclick="tree()"></li>
+    <li onclick="two()">ok  cancel</li>
+    <li onclick="three()">yes  no  cancel</li>
+    <li onclick="Read4()">form</li>
+    <li onclick="re5()">sd</li>
+    <li onclick="re6()">form spanel</li>
+</ul>
+</body>
+</html>

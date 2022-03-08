@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>inv ss</title>
+    <!-- rel 默认样式图标 -->
+    <link  rel="icon" href="img/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:8080/img/favicon.ico">
+    <link href="https://cdn.sencha.com/ext/gpl/4.2.1/resources/ext-theme-classic/ext-theme-classic-all.css" rel="stylesheet">
+    <script src="https://cdn.sencha.com/ext/gpl/4.2.1//ext-all.js"></script>
+    <script type="text/javascript" src="jquery-3.4.1.js"></script>
+</head>
+<script type="text/javascript">
+    function sele(){
+        $.ajax({
+            async:false,
+            url:'/selectID?id='+$("#userID").val(),
+            type : "get",
+            success: function (data) {
+
+                $("#username").append(data.username);
+                $("#uid").append(data.id);
+                $("#password").append(data.password);
+                $("#address").append(data.address);
+                $("#image").append("data.image");
+                $("#date").append(data.addDate);
+            },
+
+        })
+    }
+</script>
+<script>
+    // function leave(v){
+    //     if(v!=null && v!=""){
+    //         var patt1 = /^[0-9]+a$/;
+    //         if(v.match(patt1)==null){
+    //             $("#tip").show()
+    //         }else {
+    //             $("#tip").hide()
+    //         }
+    //     }
+    //
+    // }
+
+//  https://github.com/shi266/sanqi.git
+</script>
+<body>
+输入账号查询：<input type="text" id="userID" onmouseout="leave(value)">
+<button id="ss" onclick="sele()">点我</button>
+<a href="http://localhost:8801/test">nginx</a><br>
+<a href="http://localhost:8080/user">local</a>
+<span id="tip" style="color: red" hidden>账号格式不正确</span>
+    <table id="tab">
+        <tr>
+            <td >ID:</td>
+            <td id="uid"></td>
+        </tr>
+        <tr>
+            <td >用户名:</td>
+            <td id="username"></td>
+        </tr>
+        <tr>
+            <td >密码:</td>
+            <td id="password"></td>
+        </tr>
+        <tr>
+            <td >地址:</td>
+            <td id="address"></td>
+        </tr>
+        <tr>
+            <td >日期:</td>
+            <td id="date"></td>
+        </tr>
+        <tr>
+            <td >图片:</td>
+            <td id="image"></td>
+        </tr>
+
+
+    </table>
+<img src="img/errors.jpg" alt="先死hire i哦">
+<img src="img/11.ico">
+<img src="http://39.102.73.90/AmazonWebServiceSiania/FeedRecord1645584872623/main.jpg">
+</body>
+</html>

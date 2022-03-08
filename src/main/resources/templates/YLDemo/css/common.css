@@ -1,0 +1,101 @@
+html,body{
+	font:normal 12px verdana;
+	margin:0;
+	padding:0;
+	border:0 none;
+	height:100%;
+	background-color:#d2e0f2;
+}
+p {
+	margin:5px;
+}
+.msg .x-box-mc {
+    font-size:14px;
+}
+#msg-div {
+    position:absolute;
+    left:35%;
+    top:10px;
+    width:250px;
+    z-index:20000;
+}
+.iconpadding{
+	 
+}
+.hidden{
+	visibility:hidden;	
+}
+
+.x-grid-back-red {
+	background: #FF0000;
+}
+.x-grid-back-pink {
+	background: pink;
+}
+.x-grid-record-green table{
+	color: green;
+}
+.x-tbar-top{
+	background-image: url(../img/top.png) !important;
+}
+.x-tbar-add{
+	background-image: url(../img/add.gif) !important;
+}
+/*.x-tbar-del{*/
+/*	background-image: url(img/add.gif) !important;*/
+/*}*/
+.x-tbar-delete{
+	background-image: url(../img/delete.gif) !important;
+}
+.x-tbar-update{
+	background-image: url(../img/update.gif) !important;
+}
+.black{background-image: url(../img/black.png) !important;}
+/*.x-tbar-save{*/
+/*	background-image: url(../images/save.gif) !important;*/
+/*}*/
+.x-tbar-search{
+	background-image: url(../img/search.gif) !important;
+}
+/*.x-tbar-import{*/
+/*	background-image: url(../images/import.gif) !important;*/
+/*}*/
+/*.x-tbar-exit{*/
+/*	background-image: url(../images/exit.jpg) !important;*/
+/*}*/
+/*.x-tbar-execute{*/
+/*	background-image: url(../images/execute.png) !important;*/
+/*}*/
+/*.x-tbar-upload{*/
+/*	background-image: url(../images/upload.png) !important;*/
+/*}*/
+/*.x-tbar-download{*/
+/*	background-image: url(../images/download.png) !important;*/
+/*}*/
+/*.x-tbar-confirm{*/
+/*	background-image: url(../images/confirm1.png) !important;*/
+/*}*/
+/*.x-tbar-address{*/
+/*	background-image: url(../images/address.png) !important;*/
+/*}*/
+/*.x-tbar-items{*/
+/*	background-image: url(../images/items.png) !important;*/
+/*}*/
+
+/*.x-tbar-track{*/
+/*	background-image: url(../images/track2.png) !important;*/
+/*}*/
+/*.x-tbar-book{*/
+/*	background-image: url(../images/book.gif) !important;*/
+/*}*/
+/*.x-tbar-stockOut{*/
+/*	background-image: url(../images/stockOut.png) !important;*/
+/*}*/
+.x-check-group-alt {
+            background: #D1DDEF;
+            border-top:1px dotted #B5B8C8;
+            border-bottom:1px dotted #B5B8C8;
+}
+.numberfield{
+	color: red;
+}

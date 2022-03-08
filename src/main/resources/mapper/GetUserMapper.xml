@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.springdemo.com.mapper.GetUserMapper">
+
+   <!-- <select id="selectall" resultMap="UserMap">
+        select * from user
+    </select>
+    <resultMap id="UserMap" type="com.example.springdemo.com.entity.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <result property="address" column="address"></result>
+
+    </resultMap>-->
+
+    <select id="getAll" parameterType="com.example.springdemo.com.entity.User" resultType="com.example.springdemo.com.entity.User">
+        select * from user
+            <where>
+                    <if test="username!=null &amp;&amp; !username.trim().equals('')">
+                        and username=#{username}
+                    </if>
+                    <if test="address!=null &amp;&amp; !address.trim().equals('')">
+                        and address=#{address}
+                    </if>
+            </where>
+            limit #{begin},#{limit}
+    </select>
+    <select id="getExcel" parameterType="com.example.springdemo.com.entity.User" resultType="com.example.springdemo.com.entity.User">
+        select * from user
+            <where>
+                    <if test="username!=null &amp;&amp; !username.trim().equals('')">
+                        and username=#{username}
+                    </if>
+                    <if test="address!=null &amp;&amp; !address.trim().equals('')">
+                        and address=#{address}
+                    </if>
+            </where>
+    </select>
+
+<!--    获取数据总条数-->
+<select id="getRows" parameterType="com.example.springdemo.com.entity.User" resultType="int">
+
+        select count(1) from user
+            <where>
+                <if test="username!=null &amp;&amp; !username.trim().equals('')">
+                    and username=#{username}
+                </if>
+                <if test="address!=null &amp;&amp; !address.trim().equals('')">
+                    and address=#{address}
+                </if>
+            </where>
+</select>
+    <!--查询用户名-->
+    <select id="getUserName" resultType="com.example.springdemo.com.entity.UserName">
+        select DISTINCT(username) from user
+
+    </select>
+    <select id="getByUserName" resultType="com.example.springdemo.com.entity.User">
+        select *from user where username = #{username}
+
+    </select>
+
+</mapper>
