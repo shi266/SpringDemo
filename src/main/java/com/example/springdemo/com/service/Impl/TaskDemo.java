@@ -18,8 +18,8 @@ public class TaskDemo {
 
 
     int num = 0;
-    @PostConstruct
-    @Scheduled(cron = "0/5 * * * * ?")
+//    @PostConstruct
+//    @Scheduled(cron = "0/5 * * * * ?")
     public void task() throws InterruptedException {
 
 //        log.info("自动任务加载");

@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 public class UploadTest {
 
     public static void main(String args[]) throws MarketplaceWebServiceException {
-        MarketplaceWebServiceClient client =FBAFeedUtil.getClient();
+//        MarketplaceWebServiceClient client =FBAFeedUtil.getClient();
 
         
 
@@ -23,8 +23,8 @@ public class UploadTest {
                 .withContentMD5("")
                 .withFeedType("");
 
-        SubmitFeedResponse submitFeedResponse = client.submitFeed(request);
-        SubmitFeedResult result = submitFeedResponse.getSubmitFeedResult();
+//        SubmitFeedResponse submitFeedResponse = client.submitFeed(request);
+//        SubmitFeedResult result = submitFeedResponse.getSubmitFeedResult();
 
 
 
