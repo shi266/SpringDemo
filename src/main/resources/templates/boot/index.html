@@ -10,59 +10,158 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
+<style type="text/css">
+    #panel{
+        position:absolute;
+        display: none;
+        width: 400px;
+        height: 400px;
+        top: 20%;
+        left: 40%;
+    }
+
+</style>
+<script>
+    /*$(function (){
+        $.ajax({
+            async : false,
+            url : "/getTuser",
+            type : "get",
+            dataType : "json",
+            success:function (result){
+
+                var data = result.data;
+                for (let i = 0; i < data.length; i++) {
+                    var record = data[i];
+                    var context ="" +
+                        "<tr>" +
+                        "<td>"+record.id+"</td>" +
+                        "<td>"+record.name+"</td>" +
+                        "<td>"+record.pwd+"</td>" +
+                        "<td>"+record.keyid+"</td>" +
+                        "<td>"+record.fee+"</td>" +
+                        "<td><a onclick='updateDiv(\""+record.id+"\")'>修改</a>&nbsp;&nbsp;<a onclick='deleteDiv(\""+record.id+"\")'>删除</a></td>" +
+                        "</tr>";
+                    $("#tbodyData").append(context);
+                }
+            }
+
+        })
+
+
+    })*/
+</script>
+<script>
+    function updateDiv(record){
+        console.log(record)
+        // var json = record.parseJSON;
+        // console.log(">>"+JSON.stringify(json))
+        $("#idUpdate").attr("value",record);
+        // $("#namwUpdate").append(record.name)
+        // $("#pwdUpdate").append(record.pwd)
+        // $("#keyidUpdate").append(record.keyid)
+        // $("#feeUpdate").append(record.fee)
+        $("#panel").show()
+
+    }
+    function updateDivSubmit(){
+        $("#panel").hide()
+
+    }
+    function updateDivClose(data){
+        alert(data)
+        $("#panel").hide()
+
+    }
+    function deleteDiv(record){
+        alert(record)
+
+    }
+
+</script>
+<!--数据测试-->
+<script>
+$.get('/getTuser/', function(data) {
+    $('#tableData').bootstrapTable({
+        // url: 'getTuser',
+        columns: [
+            {
+                field: 'id',
+                title: 'ID'
+            },
+            {
+                field: 'name',
+                title: 'Item Name'
+            },
+            {
+                field: 'pwd',
+                title: 'Item Price'
+            },
+            {
+                field: 'keyid',
+                title: 'Item Price'
+            },
+            {
+                field: 'fee',
+                title: 'Item Price'
+            }
+        ],
+        data: formatData(data)
+    });
+});
+    var formatData = function (data) {
+        var l = [] ;
+        for ( var i = 0 ; i < data.length ; i++) {
+            var m = data.data_list[i]
+            var d = {
+                'id': m. id ,
+                'name': m. name ,
+                'pwd': m. pwd ,
+                'keyid': m. keyid ,
+                'fee': m. fee ,
+            }
+            l. push(d)
+        }
+        console.log(l)
+        return l
+    } ;
+</script>
 <body>
 <div class="container">
-    <table class="table table-striped table-hover">
-        <thead>
+    <table class="table table-striped table-hover" id="table">
+
+        <thead id="tableData">
             <tr>
-                <th>#</th>
+                <th>id</th>
                 <th>name</th>
-                <th>password</th>
-                <th>操作</th>
+                <th>pwd</th>
+                <th>keyid</th>
+                <th>fee</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>tom</td>
-                <td>jack</td>
-                <td>jerry</td>
-                <td><a href="#">修改</a> <a href="#">删除</a></td>
-            </tr>
-            <tr class="danger">
-                <td>blank</td>
-                <td>kanf</td>
-                <td>jike</td>
-                <td><a href="#">修改</a> <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td>blank</td>
-                <td>kanf</td>
-                <td>jike</td>
-                <td><a href="#">修改</a> <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td>blank</td>
-                <td>kanf</td>
-                <td>jike</td>
-                <td><a href="#">修改</a> <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td>blank</td>
-                <td>kanf</td>
-                <td>jike</td>
-                <td><a href="#">修改</a> <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td>blank</td>
-                <td>kanf</td>
-                <td>jike</td>
-                <td><a href="#">修改</a> <a href="#">删除</a></td>
-            </tr>
+        <tbody id="tbodyData">
         </tbody>
 
     </table>
+
 </div>
 
-
+<div class="jumbotron" id="panel"  >
+    <form role="form">
+    <h3>修改信息</h3><br>
+    <p class="text-left">
+        id:<input type="text" name="id" id="idUpdate" value=""><br>
+        name:<input type="text" name="name" id="nameUpdate"><br>
+        pwd:<input type="text" name="pwd" id="pwdUpdate"><br>
+        keyid:<input type="text" name="keyid" id="keyidUpdate"><br>
+        fee:<input type="text" name="fee" id="feeUpdate"><br>
+    </p>
+    <p>
+        <a class="btn btn-primary btn-lg" role="button" onclick="updateDivSubmit()">修改</a>
+        <a class="btn btn-primary btn-lg" role="button" onclick="updateDivClose('测试')">关闭</a>
+    </p>
+    </form>
+</div>
 </body>
 </html>

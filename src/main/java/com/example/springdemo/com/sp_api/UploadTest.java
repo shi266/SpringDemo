@@ -1,3 +1,4 @@
+/*
 package com.example.springdemo.com.sp_api;
 
 import cn.hutool.json.JSON;
@@ -40,12 +41,14 @@ public class UploadTest {
 
     }
 
-    /**
+    */
+/**
      * Upload content to the given URL.
      *
      * @param source the content to upload
      * @param url    the URL to upload content
-     */
+     *//*
+
     public void upload(byte[] source, String url) {
         OkHttpClient client = new OkHttpClient();
         String contentType = String.format("text/xml; charset=%s", StandardCharsets.UTF_8);
@@ -72,3 +75,4 @@ public class UploadTest {
         }
     }
 }
+*/

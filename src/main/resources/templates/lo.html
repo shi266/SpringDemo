@@ -5,10 +5,13 @@
     <title>Title</title>
     <link href="https://cdn.sencha.com/ext/gpl/4.2.1/resources/ext-theme-classic/ext-theme-classic-all.css" rel="stylesheet">
     <script src="https://cdn.sencha.com/ext/gpl/4.2.1//ext-all.js"></script>
-<!--    <script type="text/javascript" src="../static/jquery-3.4.1.js"></script>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<script>
+<!--<script>
 
     Ext.onReady(function (){
       var form =  Ext.create('Ext.form.Panel',{
@@ -50,10 +53,24 @@
 
 
     });
-</script>
+</script>-->
 
 <body>
-欢迎进入lo4s页面ddssss<br>
+<div class="container">
+    <h2>代码</h2>
+    <p>使用 pre 元素输出多行:</p>
+    <pre>在 pre 元素中的文本
+	宽度的显示与文本的宽度一样，
+	保留了  空  格 和
 
+	换行。</pre>
+    <p>如果你添加 .pre-scrollable 类,  pre 元素最大的高度 max-height 为 350px ，并生成一个 Y 轴的滚动条:</p>
+    <pre class="pre-scrollable">在 pre 元素中的文本
+	宽度的显示与文本的宽度一样，
+	保留了  空  格 和
+
+	换行。</pre>
+    <p>以下是 HTML 元素: <code>public static void main(String[] args){}</code>, <code>section</code>, 和 <code>div</code> 。</p>
+</div>
 </body>
 </html>

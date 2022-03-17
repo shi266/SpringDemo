@@ -31,7 +31,7 @@ public class FBAFeedUtil {
         out.write(fiel);
 
         //提交文档
-        new UploadTest().upload(fiel,url);
+//        new UploadTest().upload(fiel,url);
 
 
         CreateFeedSpecification createFeedSpecification = new CreateFeedSpecification();

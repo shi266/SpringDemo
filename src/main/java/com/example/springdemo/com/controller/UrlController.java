@@ -39,6 +39,14 @@ public class UrlController extends Interceptor {
             System.out.println("准备进入后台页面");
             return  "login.html";
         }
+        @GetMapping("/nginx")
+        public String nginx(){
+            return  "nginx.html";
+        }
+        @GetMapping("/boot/index")
+        public String bootIndex(){
+            return  "boot/index";
+        }
 
 
 

@@ -61,5 +61,8 @@
         select *from user where username = #{username}
 
     </select>
+    <select id="getTUser" resultType="com.example.springdemo.com.entity.TUser">
+        select  * from tuser
+    </select>
 
 </mapper>

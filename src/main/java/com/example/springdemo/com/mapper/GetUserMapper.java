@@ -1,5 +1,6 @@
 package com.example.springdemo.com.mapper;
 
+import com.example.springdemo.com.entity.TUser;
 import com.example.springdemo.com.entity.User;
 import com.example.springdemo.com.entity.UserName;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,6 +15,7 @@ public interface GetUserMapper {
 
     List<User> getAll(User user);
     List<User> getExcel(User user);
+    List<TUser> getTUser();
     int getRows(User user);
     List<UserName> getUserName();
     List<User> getByUserName(String username);
