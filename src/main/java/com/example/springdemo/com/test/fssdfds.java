@@ -1,92 +1,27 @@
 package com.example.springdemo.com.test;
 
 
-
-import com.alibaba.fastjson.JSONObject;
-import com.example.springdemo.com.entity.User;
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.util.UriBuilder;
-import reactor.core.publisher.Mono;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class fssdfds   {
 
-    public static void main(String[] args) throws ParseException {
-        double a = 0.2;
-        System.out.println(a!=0.0);
+    public static void main(String[] args)  {
+        List<String> strings = Arrays.asList("1", "2", "3");
 
-/*
+        Stream<Integer> integerStream = strings.stream().map(Integer::new);
+        integerStream.forEach(a -> System.out.println(a));
 
-
-
-
-     List<Integer> list = new ArrayList<>();
-     list.add(1);
-     list.add(2);
-     list.add(3);
-     list.add(4);
-     list.add(5);
-     list.add(6);
-     list.add(7);
-        for (Integer a : list) {
-            int num = 0;
-
-            while (true){
-                try {
-                    if(a==4 || a == 5){
-                        int b = 1/0;
-                    }
-                    System.out.println("正常输出:"+a+"\t执行次数："+num);
-                    num=0;
-                    break;
-                }catch (Exception e){
-                    System.out.println(e);
-                    num++;
-                    System.out.println("非正常输出：执行次数："+num);
-                    if(num == 3){
-                        System.out.println("退出执行");
-                        break;
-                    }
-                }
-
-            }
-
-        }
-*/
-
-
+        //
+//        list.forEach(user -> {
+//            System.err.println(user);
+//        });
+//        System.out.println("---------------");
+//        for (Integer l : list) {
+//            System.out.println(l);
+//        }
 
 
       /* Ub  u = new Ub("dfhnusuh讽德诵功");
@@ -405,31 +340,4 @@ a.setTimeInMillis(1639987200000l);
 
 
 }
-class Ub {
-    private String name;
-    private Timestamp timestamp;
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name.replaceAll("[\\u4e00-\\u9fa5]","");
-    }
-
-
-    @Override
-    public String toString() {
-        return "Ub{" +
-                "exit=" + name +
-                '}';
-    }
-}
