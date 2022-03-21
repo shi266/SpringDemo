@@ -7,6 +7,7 @@ import com.example.springdemo.com.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
@@ -14,7 +15,10 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     LoginMapper mapper;
     @Override
-    public List<User> CheckLogin(String username, String password) {
+    public List<User> CheckLogin(String username, String password, HttpSession session) {
+
+        session.setAttribute("user",username);
+
         return mapper.CheckLogin(username, password);
     }
 

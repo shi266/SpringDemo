@@ -17,10 +17,12 @@ public class TaskDemo {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
 
+
     int num = 0;
-//    @PostConstruct
+    @PostConstruct
 //    @Scheduled(cron = "0/5 * * * * ?")
     public void task() throws InterruptedException {
+        log.info("加载beanfvgd");
 
 //        log.info("自动任务加载");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -5,6 +5,7 @@ import com.example.springdemo.com.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Mapper

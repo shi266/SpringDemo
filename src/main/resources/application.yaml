@@ -26,7 +26,7 @@ spring:
 #      content-type: text/html
 
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test
     username: root
     password: root
@@ -42,9 +42,9 @@ mybatis:
     cache-enabled: true
 logging:
   file:
-    path: D:/IJProjects/SpringDemo/log
-  level:
-    com.example.springdemo.com.mapper: debug
+    path: D:\IJProjects\SpringDemo\log
+#  level:
+#    com.example.springdemo.com.mapper: debug
 
 person:
   username: "张三"

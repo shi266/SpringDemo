@@ -53,7 +53,6 @@ public class GetUserController implements SchedulingConfigurer {
         List<User> list1 = getUserMapper.getAll(user);
         returnJSON.setData(list1);
         returnJSON.setTotalRows(getUserMapper.getRows(user));//数据总条数
-        System.out.println("获取session中保存的名字："+session.getAttribute("username"));
 
         return returnJSON;
     }

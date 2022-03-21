@@ -23,16 +23,6 @@
             <artifactId>httpcore</artifactId>
             <version>4.4.10</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.amazon.sellingpartnerapi</groupId>-->
-<!--            <artifactId>sellingpartnerapi-aa-java</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.amazon.spapi.client</groupId>-->
-<!--            <artifactId>spapi-java-client</artifactId>-->
-<!--            <version>1.0.0<version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
@@ -127,11 +117,7 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.30</version>
-        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>

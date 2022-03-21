@@ -24,7 +24,8 @@ public class CheckLoginController {
     public String checkLogin(String username, String password, ReturnJSON returnJSON, HttpSession session){
         System.out.println("检查登录");
         System.out.println("获取到的密码："+password);
-        List<User> list=service.CheckLogin(username,password);
+        List<User> list=service.CheckLogin(username,password,session);
+        System.out.println("session:"+session.getAttribute("user"));
         System.out.println("查询的用户："+list);
         if(0 != list.size()){
                 return "YLDemo/userList.html";

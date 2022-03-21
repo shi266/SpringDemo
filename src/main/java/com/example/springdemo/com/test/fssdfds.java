@@ -1,6 +1,8 @@
 package com.example.springdemo.com.test;
 
 
+import com.example.springdemo.com.entity.User;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,8 +13,8 @@ public class fssdfds   {
     public static void main(String[] args)  {
         List<String> strings = Arrays.asList("1", "2", "3");
 
-        Stream<Integer> integerStream = strings.stream().map(Integer::new);
-        integerStream.forEach(a -> System.out.println(a));
+        Animal a = (String s) -> "4";
+        System.out.println(a.getName("dog"));
 
         //
 //        list.forEach(user -> {
