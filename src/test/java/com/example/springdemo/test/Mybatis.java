@@ -9,8 +9,6 @@ import com.example.springdemo.com.mapper.LoginMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
@@ -42,7 +40,6 @@ public class Mybatis {
     *
     *
     * */
-    Logger log = LoggerFactory.getLogger(getClass());
 
     @Resource
     private SqlSessionFactory sqlSessionFactory;
@@ -64,7 +61,6 @@ public class Mybatis {
         LoginMapper mapper = session.getMapper(LoginMapper.class);
         for (int i = 0; i < 3; i++) {
             User u = loginMapper.valiteLogin(user);
-            log.info("用户信息{}"+user);
             System.out.println(u);
         }
     }
@@ -78,7 +74,6 @@ public class Mybatis {
 
         User user1 = mapper1.getById(102);
         session1.commit();
-        log.info("user1:"+user1);
         u.setUsername("李四2");
         u.setPassword("islisi");
         u.setAddress("canada");
@@ -86,11 +81,9 @@ public class Mybatis {
         mapper2.updateById(u);
         session1.commit();
         User user = mapper1.getById(102);
-        log.info("user1:"+user);
         session1.commit();
         User user2 = mapper2.getById(102);
 
-        log.info("user2:"+user2);
 
 
     }

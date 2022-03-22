@@ -1,8 +1,6 @@
 package com.example.springdemo.com.entity;
 
 import com.example.springdemo.com.Page.BasePage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;

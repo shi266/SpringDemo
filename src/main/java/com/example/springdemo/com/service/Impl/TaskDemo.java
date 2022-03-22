@@ -1,10 +1,5 @@
 package com.example.springdemo.com.service.Impl;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +9,6 @@ import java.util.Date;
 @Service
 public class TaskDemo {
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
 
 
 
@@ -22,7 +16,6 @@ public class TaskDemo {
     @PostConstruct
 //    @Scheduled(cron = "0/5 * * * * ?")
     public void task() throws InterruptedException {
-        log.info("加载beanfvgd");
 
 //        log.info("自动任务加载");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

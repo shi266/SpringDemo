@@ -9,26 +9,20 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
 @RestController
 public class UserController {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
     @Resource
@@ -49,7 +43,6 @@ public class UserController {
 //        StringBuffer uri = request.getRequestURL();
 //        System.out.println(url.toString());
 //        System.out.println(uri.toString());
-        logger.debug("logInfo测试");
         //返回json数据
         ReturnJSON returnJSON = new ReturnJSON();
         returnJSON.setSuccess(true);

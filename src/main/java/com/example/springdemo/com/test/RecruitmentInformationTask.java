@@ -6,7 +6,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +13,6 @@ import java.util.List;
 
 public class RecruitmentInformationTask {
 
-    org.slf4j.Logger logger=  LoggerFactory.getLogger(getClass());
 
     public static void main(String[] args) throws Exception {
         //        //1.声明地址=》校园招聘前程无忧网站
