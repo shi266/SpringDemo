@@ -1,10 +1,7 @@
 package com.example.springdemo.com.autoTask;
 
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

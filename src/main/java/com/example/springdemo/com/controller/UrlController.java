@@ -18,7 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @Controller
-public class UrlController extends Interceptor {
+public class UrlController {
 
     //登录
         @GetMapping("/tologin")
