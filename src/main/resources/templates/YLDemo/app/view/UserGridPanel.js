@@ -86,7 +86,7 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
             this.columns = [
 
                 {
-                    text: '编号', dataIndex: 'id', sortable: false, width: 80, flex: 1,
+                    text: '编号', dataIndex: 'id', sortable: false, width: 50,
                     renderer:function(value){
                         if(value==101) {
                             return '<span style="color: red">'+value+'</span>';
@@ -95,7 +95,7 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
                     },
                 },
                 {
-                    text: '用户名', dataIndex: 'username', sortable: false, width: 80, flex: 1,
+                    text: '用户名', dataIndex: 'username', sortable: false, width: 120,
                 },
                 {
                     text: '密码', dataIndex: 'password', sortable: true, width: 80, flex: 1, clicksToEdit: 2,
@@ -461,16 +461,92 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
                 handler:this.showdeleteWindow,
             },
             {
+                type: "button",
+                text: '导入Excel',
+                iconCls: 'x-tbar-upload',
+                handler: function (view,rowIndex,colIndex,item,e,record){
+                    var importExcelPanel = Ext.create('Ext.form.Panel', {
+                        items: [
+                            //重发ID
+                            {
+                                xtype: 'filefield',
+                                name: 'excelFile',
+                                fieldLabel: 'Excel文件',
+                                buttonText: '选择文件',
+                                labelPad:0,
+                                labelWidth:60,
+                                width:300,
+                                readOnly:true,
+                                allowBlank:false,
+                            },
+                        ],
+                        buttons:[
+                            {
+                                text: 'submit',
+                                handler: function () {
+                                    if(importExcelPanel.isValid()){
+                                        importExcelPanel.getForm().submit({
+                                            url:'/sanqi/uploadExcel',
+                                            method:'post',
+                                            waitMsg: '正在上传...',
+                                            success:function(basicForm,action){
+                                                if(action.result.success){
+                                                    Ext.Msg.alert('Status',action.result.data);
+                                                    importExcelPanel.up('window').close();
+                                                }
+                                            },
+                                            failure:function(basicForm,action){
+                                                switch (action.failureType) {
+                                                    case Ext.form.action.Action.SERVER_INVALID:
+                                                        Ext.Msg.alert('ERROR', action.result.data);
+                                                        break;
+                                                    default:Ext.Msg.alert('ERROR','通讯失败!稍后再试');
+                                                }
 
-                itemId:'up',
-                text: '上传',
-                iconCls: 'x-tbar-delete',
-                handler: function (){
-                    var name=gridPanel.name;
-                    var address=gridPanel.address;
-                    window.open('readExcel?' +
-                        'username='+name+
-                        '&address='+address)
+                                            },
+                                        });
+                                       /* importExcelPanel.getForm().submit({
+                                            url:'/sanqi/uploadExcel',
+                                            method:'post',
+                                            waitMsg: '正在上传...',
+                                            success:function(basicForm,action){
+                                                Ext.Msg.alert('basicForm', JSON.stringify(basicForm));
+                                                Ext.Msg.alert('action', JSON.stringify(action));
+                                                Ext.Msg.alert('return', JSON.stringify(action.result));
+                                            },
+                                            failure:function(basicForm,action){
+                                                switch (action.failureType) {
+                                                    case Ext.form.action.Action.SERVER_INVALID:
+                                                        Ext.Msg.alert('ERROR', JSON.stringify(action.result));
+                                                        break;
+                                                    default:
+                                                        Ext.Msg.alert('ERROR','通讯失败!检查是否已经连接上互联网');
+                                                }
+                                                importExcelPanel.up('window').close();
+                                            },
+                                        });*/
+                                    }
+
+                                }
+                            },
+                            {
+                                text:'close',
+                                handler:function(){
+                                    importExcelPanel.up('window').close();
+                                }
+                            },
+                        ]
+
+                    });
+                    Ext.create('Ext.window.Window',{
+                        items:importExcelPanel,
+                        title:'上传Excel批量更新',
+                        width:400,
+                        height:100,
+                        modal:true,
+                        resizable: false,
+                        overflowY:'auto',
+                    }).show();
                 }
             },
             {

@@ -6,9 +6,11 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.example.springdemo.com.entity.User;
 import com.example.springdemo.com.mapper.LoginMapper;
+import com.example.springdemo.com.test.redis.RedisUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
@@ -43,8 +45,13 @@ public class Mybatis {
 
     @Resource
     private SqlSessionFactory sqlSessionFactory;
+
     @Resource
     LoginMapper loginMapper;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Test
     public void mybatisCache(){
 
@@ -139,6 +146,13 @@ public class Mybatis {
 
 
 
+    }
+    //Redis测试
+    @Test
+    public void redis(){
+        System.out.println("开始测试Redis");
+         redisUtil.add("redis","test");
+        System.out.println("执行完成");
     }
 
 

@@ -34,6 +34,10 @@ public class UrlController {
         public String bootIndex(){
             return  "boot/index";
         }
+        @GetMapping("/erp")
+        public String erp(){
+            return  "erp";
+        }
 
 
 

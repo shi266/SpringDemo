@@ -10,8 +10,10 @@ import org.springframework.util.ObjectUtils;
 
 import java.io.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +28,14 @@ public class Test {
 
     public static void main(String[] args) throws IOException, NoSuchMethodException {
 
-        String context = "ASIN: B01KNVF4SI" +
+        Date date = new Date(1648616400000l);
+        Date date2 = new Date(1649826000000l);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        System.out.println(sdf.format(date));
+        System.out.println(sdf.format(date2));
+
+     /*   String context = "ASIN: B01KNVF4SI" +
                 "\n" +
                 "Thank you, dfhfhdfghdf564";
         String context2 =
@@ -40,7 +49,7 @@ public class Test {
         info.setAddTime(new Timestamp(System.currentTimeMillis()));
         list.add(info);
         System.out.println(!ObjectUtils.isEmpty(list)?"true":"false");
-
+*/
     /*    String context2 =
                 "ASIN: B07NC8PWDM, B01KNVF4SI, B08GYWZT5V, B08HN15QMJ, B07GZSDHSK, B08CZ7533B, B07GT6XYRC, B08GPKRRRJ, B075RC3FPY, B07H2V5YLH\n" +
                 "Titsle: image\n" +

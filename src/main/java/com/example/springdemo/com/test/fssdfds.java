@@ -3,6 +3,7 @@ package com.example.springdemo.com.test;
 
 import com.example.springdemo.com.entity.User;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,10 +12,8 @@ import java.util.stream.Stream;
 public class fssdfds   {
 
     public static void main(String[] args)  {
-        List<String> strings = Arrays.asList("1", "2", "3");
 
-        Animal a = (String s) -> "4";
-        System.out.println(a.getName("dog"));
+
 
         //
 //        list.forEach(user -> {

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserTree</title>
+    <link href="https://cdn.sencha.com/ext/gpl/4.2.1/resources/ext-theme-classic/ext-theme-classic-all.css" rel="stylesheet">
+    <script src="https://cdn.sencha.com/ext/gpl/4.2.1//ext-all.js"></script>
+<!--    <script src="Tree.js" type="text/javascript"></script>-->
+</head>
+<script>
+    var tree =  Ext.create('Ext.data.TreeStore', {
+        root: {
+            expanded: true,
+            children: [          //Tree数据结构
+                {text:"Amazon平台管理",expanded: false, children:[
+                        {text: "AmazonASIN管理",leaf:true},
+                        {text: "AmazonSKU查询",leaf:true},
+                    ],},
+            ],
+        }
+    });
+    Ext.onReady(function (){
+        Ext.create('Ext.container.Viewport', {
+            layout: 'border',
+            items: [{
+                region: 'north',
+                html: '<h1 class="x-panel-header">Page Title</h1>',
+                border: false,
+                margins: '0 0 5 0'
+
+            },{
+                region: 'west',
+                collapsible: true,
+                title: '功能菜单',
+                width: 150,
+                // could use a TreePanel or AccordionLayout for navigational items
+            }, {
+                region: 'center',
+                xtype: 'tabpanel', // TabPanel itself has no title
+                activeTab: 0,      // First tab active by default
+                items: {
+                    title: '仪表盘',
+                    bodyStyle:'background-color:#8dcbc5',
+                    html: 'The first tab\'s content. Others may be added dynamically'
+                }
+            }]
+        });
+
+
+    })
+
+</script>
+<body>
+    erp测试页面
+
+</body>
+</html>

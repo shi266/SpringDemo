@@ -1,14 +1,18 @@
 package com.example.springdemo.com.controller;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.example.springdemo.com.entity.User;
 import com.example.springdemo.com.mapper.LoginMapper;
 import com.example.springdemo.com.mapper.UserMapper;
 import com.example.springdemo.com.service.UserService;
 import com.example.springdemo.com.util.ReturnJSON;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,7 +38,31 @@ public class UserController {
 
 //    @Autowired
 //    private LoginMapper userMapper;
+    @ResponseBody
+    @RequestMapping("/sanqi/uploadExcel")
+    public ReturnJSON batchAddAmazonFBAInventoryAgeProcessingRecordByExcel(MultipartFile excelFile,ReturnJSON returnJSONObject ) throws IOException, InvalidFormatException {
 
+        String fileName = excelFile.getOriginalFilename();
+        System.out.println("文件名："+fileName);
+
+
+//        XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream());
+        Workbook workbook = WorkbookFactory.create(excelFile.getInputStream());
+        //获取第一个sheet
+        Sheet sheet =  workbook.getSheetAt(0);
+
+        if(sheet!=null){
+            Row row = sheet.getRow(1);
+            Cell cell = row.getCell(20);
+            System.out.println(cell.getStringCellValue());
+        }
+
+
+        returnJSONObject.setSuccess(true);
+        returnJSONObject.setData("倒入成功");
+
+        return returnJSONObject;
+    }
 
     @GetMapping("/getUsers")
     @ResponseBody
