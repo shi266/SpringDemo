@@ -5,6 +5,7 @@ import com.example.springdemo.com.entity.User;
 import com.example.springdemo.com.mapper.LoginMapper;
 import com.example.springdemo.com.mapper.UserMapper;
 import com.example.springdemo.com.service.UserService;
+import com.example.springdemo.com.test.redis.test.RedisService;
 import com.example.springdemo.com.util.ReturnJSON;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -13,6 +14,9 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +27,9 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -36,8 +42,22 @@ public class UserController {
     @Resource
     LoginMapper loginMapper;
 
-//    @Autowired
-//    private LoginMapper userMapper;
+    @Resource
+    private RedisService redisService;
+
+    @Resource
+    private RedisTemplate<String, String> redisTemplate;
+    @RequestMapping(value = "/demo/{Id}",method = RequestMethod.GET)
+    public String demo( String Id){
+        System.out.println("进入方法！！！");
+        redisService.setValue("liu","liuneng");
+        System.out.println("写入完成");
+
+        return "返回数据："+Id;
+    }
+
+
+
     @ResponseBody
     @RequestMapping("/sanqi/uploadExcel")
     public ReturnJSON batchAddAmazonFBAInventoryAgeProcessingRecordByExcel(MultipartFile excelFile,ReturnJSON returnJSONObject ) throws IOException, InvalidFormatException {

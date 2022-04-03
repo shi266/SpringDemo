@@ -7,10 +7,31 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
         this.createBbar();
         // this.createSelectionModel2();
         this.createColumns();
+        this.createPlugins();
         this.callParent(arguments);
-
-
         },
+
+    createPlugins:function(){
+        var gridPanel=this;
+        this.plugins=[
+            {
+                ptype:'rowexpander',
+                rowBodyTpl:Ext.create('Ext.XTemplate'),
+            },
+            Ext.create('Ext.grid.plugin.CellEditing', {
+                clicksToEdit:1,
+                pluginId:'cellplugin',
+                listeners:{
+                    edit:function(editor,e){
+                        if (e.originalValue!=e.value){
+                            alert("改变了")
+                        }
+                    },
+                },
+            })
+        ];
+    },
+
     createSelectionModel:function(){
         this.selModel=Ext.create('Ext.selection.RowModel',{
             listeners:{
@@ -85,8 +106,30 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
             var gridPanel = this;
             this.columns = [
 
+
                 {
                     text: '编号', dataIndex: 'id', sortable: false, width: 50,
+                    editor: {
+                        xtype:'combo',
+                        store:Ext.create('Ext.data.Store',{
+                            fields:['name','value'],
+                            data:[
+                                {'name':'海运','value':'海运'},
+                                {'name':'空派','value':'空派'},
+                                {'name':'快递','value':'快递'},
+                            ],
+                        }),
+                        displayField:'name',
+                        valueField:'value',
+                        queryMode:'local',
+                        width:150,
+                        editable:false,
+                        forceSelection:true,
+                        listConfig:{
+                            minWidth:120,
+                        },
+                        value:''
+                    },
                     renderer:function(value){
                         if(value==101) {
                             return '<span style="color: red">'+value+'</span>';
@@ -96,6 +139,10 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
                 },
                 {
                     text: '用户名', dataIndex: 'username', sortable: false, width: 120,
+                    renderer:function(value,metaData,record) {
+
+                        return '<span title="'+value+'测试">'+value+'</span>';
+                    }
                 },
                 {
                     text: '密码', dataIndex: 'password', sortable: true, width: 80, flex: 1, clicksToEdit: 2,

@@ -1,31 +1,24 @@
 package com.example.springdemo.test;
 
 import cn.hutool.http.HttpUtil;
-import cn.hutool.json.JSON;
-import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.example.springdemo.com.entity.User;
 import com.example.springdemo.com.mapper.LoginMapper;
-import com.example.springdemo.com.test.redis.RedisUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ResourceUtils;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
-import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
@@ -49,8 +42,7 @@ public class Mybatis {
     @Resource
     LoginMapper loginMapper;
 
-    @Autowired
-    private RedisUtil redisUtil;
+
 
     @Test
     public void mybatisCache(){
@@ -146,13 +138,6 @@ public class Mybatis {
 
 
 
-    }
-    //Redis测试
-    @Test
-    public void redis(){
-        System.out.println("开始测试Redis");
-         redisUtil.add("redis","test");
-        System.out.println("执行完成");
     }
 
 
