@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.springdemo.com.mapper.GetUserMapper">
+<mapper namespace="sanqi.com.mapper.GetUserMapper">
 
    <!-- <select id="selectall" resultMap="UserMap">
         select * from user
     </select>
-    <resultMap id="UserMap" type="com.example.springdemo.com.entity.User">
+    <resultMap id="UserMap" type="User">
         <id property="id" column="id"/>
         <result property="username" column="username"></result>
         <result property="password" column="password"></result>
@@ -15,7 +15,7 @@
 
     </resultMap>-->
 
-    <select id="getAll" parameterType="com.example.springdemo.com.entity.User" resultType="com.example.springdemo.com.entity.User">
+    <select id="getAll" parameterType="sanqi.com.entity.User" resultType="sanqi.com.entity.User">
         select * from user
             <where>
                     <if test="username!=null &amp;&amp; !username.trim().equals('')">
@@ -27,7 +27,7 @@
             </where>
             limit #{begin},#{limit}
     </select>
-    <select id="getExcel" parameterType="com.example.springdemo.com.entity.User" resultType="com.example.springdemo.com.entity.User">
+    <select id="getExcel" parameterType="sanqi.com.entity.User" resultType="sanqi.com.entity.User">
         select * from user
             <where>
                     <if test="username!=null &amp;&amp; !username.trim().equals('')">
@@ -40,7 +40,7 @@
     </select>
 
 <!--    获取数据总条数-->
-<select id="getRows" parameterType="com.example.springdemo.com.entity.User" resultType="int">
+<select id="getRows" parameterType="sanqi.com.entity.User" resultType="int">
 
         select count(1) from user
             <where>
@@ -53,15 +53,15 @@
             </where>
 </select>
     <!--查询用户名-->
-    <select id="getUserName" resultType="com.example.springdemo.com.entity.UserName">
+    <select id="getUserName" resultType="sanqi.com.entity.UserName">
         select DISTINCT(username) from user
 
     </select>
-    <select id="getByUserName" resultType="com.example.springdemo.com.entity.User">
+    <select id="getByUserName" resultType="sanqi.com.entity.User">
         select *from user where username = #{username}
 
     </select>
-    <select id="getTUser" resultType="com.example.springdemo.com.entity.TUser">
+    <select id="getTUser" resultType="sanqi.com.entity.TUser">
         select  * from tuser
     </select>
 

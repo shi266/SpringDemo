@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.springdemo.com.mapper.LoginMapper">
+<mapper namespace="sanqi.com.mapper.LoginMapper">
     <cache/>
-        <update id="updateById" parameterType="com.example.springdemo.com.entity.User" >
+        <update id="updateById" parameterType="sanqi.com.entity.User" >
             update user set username=#{username},password=#{password},address=#{address}  where id=#{id}
         </update>
     <!-- 登录检查 -->
-    <select id="CheckLogin" parameterType="String" resultType="com.example.springdemo.com.entity.User">
+    <select id="CheckLogin" parameterType="String" resultType="sanqi.com.entity.User">
         select * from user where username=#{username} and password=#{password}
     </select>
     <select id="selectall" resultMap="UserMap">
         select * from user
     </select>
-    <select id="valiteLogin" resultType="com.example.springdemo.com.entity.User">
+    <select id="valiteLogin" resultType="sanqi.com.entity.User">
         select * from user where username=#{username} and password=#{password}
 
     </select>
-    <select id="getById" resultType="com.example.springdemo.com.entity.User">
+    <select id="getById" resultType="sanqi.com.entity.User">
         select * from user where id=#{id}
     </select>
-    <resultMap id="UserMap" type="com.example.springdemo.com.entity.User">
+    <resultMap id="UserMap" type="sanqi.com.entity.User">
             <id property="id" column="id"/>
             <result property="username" column="username"></result>
             <result property="password" column="password"></result>
@@ -29,7 +29,7 @@
 
     </resultMap>
 
-    <insert id="addTest" parameterType="com.example.springdemo.com.entity.TestDouble">
+    <insert id="addTest" parameterType="sanqi.com.entity.TestDouble">
         insert into test_double(id,fee) values(#{id},#{fee})
 
     </insert>
