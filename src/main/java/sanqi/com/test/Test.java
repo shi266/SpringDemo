@@ -1,10 +1,14 @@
 package sanqi.com.test;
 
 
+import org.springframework.util.ObjectUtils;
+
 import java.io.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Test {
     public Info demo(){
@@ -16,12 +20,20 @@ public class Test {
 
     public static void main(String[] args) throws IOException, NoSuchMethodException {
 
-        Date date = new Date(1648616400000l);
-        Date date2 = new Date(1649826000000l);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String a = "B09PBG9Q9P\n" +
+                "B09PBJT1ZT\n" +
+                "B09PBHRZL1\n" +
+                "B09PBHQDWM\n" +
+                "B09PBH5231\n" +
+                "B09PBGYTTG\n" +
+                "B09PBH1L1G\n" +
+                "B09PBKB6ZH\n" +
+                "B09PBKC968\n" +
+                "B09PBHR25W";
+        System.out.println(a.length());
+        System.out.println("\n".length());
 
-        System.out.println(sdf.format(date));
-        System.out.println(sdf.format(date2));
+
 
      /*   String context = "ASIN: B01KNVF4SI" +
                 "\n" +

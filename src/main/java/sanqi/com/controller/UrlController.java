@@ -51,12 +51,12 @@ public class UrlController {
 
         return user;
     }
-    @GetMapping("/exitlogin")
+    @GetMapping("/exit")
     @ResponseBody
     public String exitlogin(HttpSession session){
         System.out.println("进入exitlogin");
 
-        return "hh.html";
+        return "exit";
     }
     @GetMapping("/toSavePicture")
     public String login() throws FileNotFoundException {

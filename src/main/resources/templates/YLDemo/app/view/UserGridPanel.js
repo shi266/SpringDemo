@@ -108,7 +108,7 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
 
 
                 {
-                    text: '编号', dataIndex: 'id', sortable: false, width: 50,
+                    text: '编号', dataIndex: 'id',  width: 50,
                     editor: {
                         xtype:'combo',
                         store:Ext.create('Ext.data.Store',{
@@ -306,9 +306,11 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
         this.store =Ext.create('Ext.data.Store',{
             fields:['id', 'username', 'password', 'address','active','commit','image'],
             pageSize:25,
+       /*     remoteSort:true,*/
             proxy:{
                 type:'ajax',
                 url:'/getUsersall',
+                simpleSortMode:true,
                 reader:{
                     type:'json',
                     root:'data',
@@ -372,63 +374,7 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
 
                 }
             },
-            {
-                fieldLabel:'投诉类型',
-                xtype:'combo',
 
-                store:Ext.create('Ext.data.Store',{
-                    fields : [ 'name', 'value' ],
-                    data : [
-                        { name:'全部',value:'' },
-                        { name:'详情页改为展示其他商品',value:'详情页改为展示其他商品' },
-                        { name:'产品详情页违规-变体添加错误-错误添加变体产品', value:'产品详情页违规-变体添加错误-错误添加变体产品'},
-                        { name:'产品详情页违规-变体添加错误-错误使用变体类别', value:'产品详情页违规-变体添加错误-错误使用变体类别' },
-                        { name:'产品详情页违规-变体添加错误-错误添加变体产品', value:'产品详情页违规-变体添加错误' },
-                        { name:'产品详情页违规-详情页内容不正确/违规-详情页图片不合适/违规', value:'产品详情页违规-详情页内容不正确/违规-详情页图片不合适/违规' },
-                        { name:'产品详情页违规-变体添加错误-隐藏变体违规', value:'产品详情页违规-变体添加错误-隐藏变体违规' },
-                    ]
-                }),
-                listeners: {
-                    select: function (combo) {
-                        alert("combo:"+combo.value)
-                        if (combo.value == '详情页改为展示其他商品') {
-                            Ext.Ajax.request({
-                                url:'/getFee',
-                                method:'Get',
-                                params: {
-                                    username: gridPanel.name,
-                                    address: gridPanel.address,
-                                },
-                                success:function(response){
-                                    var totalFulfillmentFee = Ext.decode(response.responseText).data;
-                                    Ext.getCmp('address').setValue(totalFulfillmentFee);//将获取到的费用填充到页面
-                                },
-                                failure:function(basicForm,action){
-                                    switch (action.failureType) {
-                                        case Ext.form.action.Action.SERVER_INVALID:
-                                            Ext.Msg.alert('ERROR', action.result.data);break;
-                                        default:Ext.Msg.alert('ERROR','通讯失败!稍后再试');
-                                    }
-                                },
-                            });
-                        } else {
-                            alert("shgidsh")
-                        }
-                    }
-                },
-
-                displayField:'name',  //显示域
-                valueField:'value',     //值域
-                emptyText:'请选择',     //提示语
-                editable:false, //不可编辑
-                // queryMode:'local',
-                defaultText:'textfield',
-                labelWidth:60,
-                labelPad:0,
-                width:300,
-                id:'violationType',
-                name:'violationType',
-            },
             {
                 fieldLabel:'地址',
                 xtype:'textfield',
@@ -445,9 +391,10 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
                 iconCls:'x-tbar-search',
 
                 handler:function(button){
+                    gridPanel.getStore().reload();
                     // button.up('gridpanel').getStore().loadPage(1);
                     // gridPanel.getTotalFulfillmentFee();
-                    var sto =Ext.create('Ext.data.Store',{
+                    /*var sto =Ext.create('Ext.data.Store',{
                         fields:['id', 'username', 'password', 'address','active','commit'],
                         pageSize:25,
                         proxy:{
@@ -473,15 +420,7 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
                             },
                         },
                         autoLoad:true,
-                    });
-                    console.log('sto:'+sto.data[0])
-                    var baseUrl=sto.findRecord('username','admin');
-                    console.log('baseUrl:'+baseUrl)
-                    var topReviewUrl = baseUrl.get('address');
-                    console.log("测试从store获取数据:"+topReviewUrl)
-                    console.log("测试从store获取数据")
-                    console.log(sto.getCount())
-                    // console.log(sto.getAt(0).get('address'))
+                    });*/
                 }
             },
             {
@@ -638,10 +577,10 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
                 iconCls: 'x-tbar-delete',
                 handler: function (){
                     Ext.Ajax.request({
-                        url: 'exitlogin',
+                        url: '/exit',
                         success: function(response){
                             var text = response.responseText;
-                            // process server response here
+                            window.location.href='http://localhost:8080/tologin';
                         }
                     });
                 }
