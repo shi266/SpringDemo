@@ -20,6 +20,8 @@ public class ScheduledTest implements SchedulingConfigurer ,Runnable{
         System.out.println("配置自动任务");
         taskRegistrar.addCronTask(this,"0/10 * * * * ?");//开启的线程 ， cron（定时）
     }
+
+
     @Scheduled(cron = "0/5 * * * * ?")
     public void autoTask(){
         System.out.println(sdf.format(new Date())+" 自动任务");

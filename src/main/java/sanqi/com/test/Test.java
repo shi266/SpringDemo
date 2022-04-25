@@ -2,12 +2,14 @@ package sanqi.com.test;
 
 
 import org.springframework.util.ObjectUtils;
+import sanqi.com.util.ZipUtils;
 
 import java.io.*;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Test {
@@ -18,23 +20,61 @@ public class Test {
 
     }
 
-    public static void main(String[] args) throws IOException, NoSuchMethodException {
-
-        String a = "B09PBG9Q9P\n" +
-                "B09PBJT1ZT\n" +
-                "B09PBHRZL1\n" +
-                "B09PBHQDWM\n" +
-                "B09PBH5231\n" +
-                "B09PBGYTTG\n" +
-                "B09PBH1L1G\n" +
-                "B09PBKB6ZH\n" +
-                "B09PBKC968\n" +
-                "B09PBHR25W";
-        System.out.println(a.length());
-        System.out.println("\n".length());
+    public static void main(String[] args) throws IOException, NoSuchMethodException, ParseException {
 
 
+        String path = "D:\\savePic\\demoerror.jpg";
+        String path2 = "D:\\savePic";
+        String save = "C:\\Users\\Administrator\\Desktop";
+        File file = new File(path);
 
+//        _E__project_sqe_WEB-INF_classes_amazonProductPackagePartDesign_US_         sms-videoinstruction-001-   .zip
+
+
+       /* Info info = new Info();
+        info.setStartDate(Date.valueOf("2022-04-19"));
+        info.setEndtDate(Date.valueOf("2022-03-27"));
+
+        int day = (int) ((info.getStartDate().getTime()-info.getEndtDate().getTime())/(1 *24 *60*60*1000));
+        System.out.println(day);*/
+
+
+
+
+
+
+
+
+         /*   String bb = "B09WYJSK15  \n" +
+                    "B099PMHTJT    \n" +
+                    "B09SHR23SX    \n" +
+                    "B09BL3D5HK    \n" +
+                    "B09NPVY8J6      \n" +
+                    "B09SHP8MCP    \n" +
+                    "B099PN26XC  ";
+            String [] str = bb.split("\n");
+        for (String s : str) {
+            System.out.println(s.trim()+",");
+        }
+
+
+        Info info = new Info();
+        info.setResendDate(new Date(new SimpleDateFormat("yyyy-MM-dd").parse("2022-04-18").getTime()));
+        String dateFormat = new SimpleDateFormat("yyyyMMdd").format(info.getResendDate());
+        String newID =  "ASRO"+dateFormat+String.format("%03d", 1);
+        System.out.println(newID);
+        String sub = newID.substring(newID.length()-3,newID.length());
+        newID = "ASRO"+ dateFormat +String.format("%03d", Integer.valueOf(sub) + 1);
+        System.out.println(newID);*/
+      /*  Date today = new Date(System.currentTimeMillis());
+        String dateFormat = new SimpleDateFormat("yyyyMMdd").format(today);
+        String  newID = "ASRO" + dateFormat +String.format("%03d", 1);
+        System.out.println(newID);
+        String maxID="ASRO20211205004";
+        String sub = maxID.substring(maxID.length()-3,maxID.length());
+        newID = "ASRO"+ dateFormat +String.format("%03d", Integer.valueOf(sub) + 1);
+
+        System.out.println(new SimpleDateFormat("yyyy-MM-dd").parse("2022-04-18"));*/
      /*   String context = "ASIN: B01KNVF4SI" +
                 "\n" +
                 "Thank you, dfhfhdfghdf564";
@@ -120,6 +160,36 @@ public class Test {
 class Info{
     private String name;
     private Timestamp addTime;
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndtDate() {
+        return endtDate;
+    }
+
+    public void setEndtDate(Date endtDate) {
+        this.endtDate = endtDate;
+    }
+
+    private Date startDate;
+    private Date endtDate;
+
+
+    public Date getResendDate() {
+        return resendDate;
+    }
+
+    public void setResendDate(Date resendDate) {
+        this.resendDate = resendDate;
+    }
+
+    private Date resendDate;
 
     public Timestamp getAddTime() {
         return addTime;

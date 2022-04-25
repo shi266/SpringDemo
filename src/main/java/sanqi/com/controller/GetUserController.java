@@ -1,9 +1,8 @@
 package sanqi.com.controller;
 
 import sanqi.com.Page.BasePage;
-import sanqi.com.entity.Person;
-import sanqi.com.entity.User;
-import sanqi.com.entity.UserName;
+import sanqi.com.entity.*;
+import sanqi.com.mapper.AmazonSellerFulfillmentOrderSet;
 import sanqi.com.mapper.GetUserMapper;
 import sanqi.com.mapper.UserMapper;
 import sanqi.com.util.ReturnJSON;
@@ -22,8 +21,10 @@ import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
+import sanqi.com.util.ZipUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
@@ -43,16 +44,42 @@ public class GetUserController implements SchedulingConfigurer {
 //    @Autowired
 //    private LoginMapper userMapper;
 
+
+
+    @Resource
+    AmazonSellerFulfillmentOrderSet amazonSellerFulfillmentOrderSet;
+    @GetMapping("/zip")
+    @ResponseBody
+    public void getzip(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String path = "D:/savePic";
+        String name = "测试ceshi";
+                name  =   new String(name.getBytes("UTF-8"), "ISO8859_1");
+        response.setContentType("application/zip");
+        response.setHeader("Content-Disposition", "attachment; filename="+name+".zip");
+        ZipUtils.toZip(path, response.getOutputStream(), false);
+    }
+
+    @GetMapping("/getAmazon")
+    @ResponseBody
+    public String getData(){
+        AmazonSellerFulfillmentOrderQueryParam param = new AmazonSellerFulfillmentOrderQueryParam();
+//        param.setResendDate(java.sql.Date.valueOf("2022-04-18"));
+        List<AmazonSellerFulfillmentOrder> orders = amazonSellerFulfillmentOrderSet.getAllAmazonSellerFulfillmentOrders(param);
+        System.out.println("数据条数："+orders.size());
+        return "数据条数："+orders.size();
+    }
+
     @GetMapping("/getUsersall")
     @ResponseBody
-    public ReturnPageJson getUser(ReturnPageJson returnJSON, User user, BasePage basePage, HttpSession session){
+    public List getUser(ReturnPageJson returnJSON, User user, BasePage basePage, HttpSession session){
         //返回json数据
+        System.out.println("获取数据：getUsersall");
         returnJSON.setSuccess(true);
         List<User> list1 = getUserMapper.getAll(user);
         returnJSON.setData(list1);
         returnJSON.setTotalRows(getUserMapper.getRows(user));//数据总条数
 
-        return returnJSON;
+        return list1;
     }
     @GetMapping("/getByUserName")
     @ResponseBody

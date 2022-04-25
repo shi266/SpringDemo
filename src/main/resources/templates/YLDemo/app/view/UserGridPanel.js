@@ -366,7 +366,16 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
                         }
 
                     },
-
+                    listeners:{
+                        load:function(store,records,successful){
+                            console.log(successful)
+                            if(successful){
+                                store.insert(0,{name:'username',value:'0'});
+                            }else {
+                                Ext.Msg.alert('ERROR','后台出现异常,请联系管理员');
+                            }
+                        },
+                    },
                     }),
                 value:'',
                 id:'name',
@@ -380,7 +389,10 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
                 xtype:'textfield',
                 labelWidth:40,
                 labelPad:0,
+                maxLength:20,
+                maxLengthText:'还在输，撑死了',
                 forceSelection:true,
+                msgTarget:'under',
                 id:'address',
             },
             {
@@ -624,10 +636,38 @@ Ext.define('YLDemo.app.view.UserGridPanel', {
                             layout: "form",
                             style: "margin-left: 2px;padding-left:5px",
                             items: [
-                                { fieldLabel: "姓  名", id:"userName", allowBlank: false,xtype:"textfield" },
+                                { fieldLabel: "姓  名",
+                                    id:"userName",
+                                    allowBlank: false,
+                                    xtype:"textfield",
+                                    maxLength:50,
+                                    maxLengthText:'还在输，撑死了',
+                                    forceSelection:false,
+                                    msgTarget:'under',
+                                },
                                 { fieldLabel: "通信地址", id: "userAddress", allowBlank: false,xtype:"textfield" },
                                 { fieldLabel: "Email", id: "userEmail", vtype: "email", allowBlank: false,xtype:"textfield" },
-                                { fieldLabel: "年  龄", id: "userAge", xtype: "numberfield", maxValue: 100, minValue: 0, allowBlank: false }
+                                { fieldLabel: "年  龄", id: "userAge", xtype: "numberfield", maxValue: 100, minValue: 0, allowBlank: false },
+                                {
+                                    xtype: 'textarea',
+                                    fieldLabel: '附加ASIN',
+                                    name: 'additionAsins',
+                                    width: 300,
+                                    height:90,
+                                    msgTarget:'under',
+                                    id:'ssss',
+                                    listeners: {
+                                        change : function ( o, newValue, oldValue, eOpts ){
+                                            console.log("值发生改变")
+                                           var asinArr = newValue.toString().split('\n');
+                                           console.log('asinArr:'+asinArr)
+                                           console.log('asinArr长度:'+asinArr.length)
+                                            if(asinArr.length>9){
+                                                Ext.getCmp('ssss').setValue(oldValue)
+                                            }
+                                        }
+                                    }
+                                },
                             ]
                         },
                         {

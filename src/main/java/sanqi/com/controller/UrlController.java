@@ -20,6 +20,16 @@ import java.io.IOException;
 public class UrlController {
 
     //登录
+        @GetMapping("/table")
+        public String bootStrapTable(){
+            System.out.println("准备进入后台页面");
+
+//            String path = this.getClass().getClassLoader().getResource(".." + File.separatorChar + ".." + File.separatorChar).getFile();
+            String path1 = this.getClass().getClassLoader().getResource("").getFile();
+//            System.out.println("path:"+path);
+            System.out.println("path1:"+path1.replaceAll("target/classes/",""));
+            return  "bootStrapTable.html";
+        }
         @GetMapping("/tologin")
         public String tttt(){
             System.out.println("准备进入后台页面");

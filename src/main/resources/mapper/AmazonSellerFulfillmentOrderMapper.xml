@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sanqi.com.mapper.AmazonSellerFulfillmentOrderSet">
+
+
+
+
+    <select id="getAllAmazonSellerFulfillmentOrders" parameterType="sanqi.com.entity.AmazonSellerFulfillmentOrderQueryParam" resultType="sanqi.com.entity.AmazonSellerFulfillmentOrder">
+        select * from amazon_seller_fulfillment_order
+        <where>
+            <if test='oldOrderID != null &amp;&amp; !oldOrderID.trim().equals("")'>
+                and oldOrderID=#{oldOrderID}
+            </if>
+            <if test='fulfillmentOrderId != null &amp;&amp; !fulfillmentOrderId.trim().equals("")'>
+                and fulfillmentOrderId=#{fulfillmentOrderId}
+            </if>
+            <if test='resendDate != null'>
+                and resendDate &lt; #{resendDate,jdbcType=DATE}
+            </if>
+            <if test='minDate != null'>
+                and resendDate &gt;= #{minDate,jdbcType=DATE}
+            </if>
+            <if test='sku != null &amp;&amp; !sku.trim().equals("")'>
+                and sku=#{sku}
+            </if>
+            <if test='addUser!=null &amp;&amp; !addUser.trim().equals("")'>
+                and addUser=#{addUser}
+            </if>
+            <if test='accountId!=null &amp;&amp; !accountId.trim().equals("")'>
+                and accountId=#{accountId,jdbcType=VARCHAR}
+            </if>
+
+        </where>
+    </select>
+
+</mapper>

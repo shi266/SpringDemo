@@ -2,7 +2,10 @@ package sanqi.test;
 
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
+import sanqi.com.entity.AmazonSellerFulfillmentOrder;
+import sanqi.com.entity.AmazonSellerFulfillmentOrderQueryParam;
 import sanqi.com.entity.User;
+import sanqi.com.mapper.AmazonSellerFulfillmentOrderSet;
 import sanqi.com.mapper.LoginMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,7 +19,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
@@ -40,7 +45,16 @@ public class Mybatis {
     @Resource
     LoginMapper loginMapper;
 
+    @Resource
+    AmazonSellerFulfillmentOrderSet amazonSellerFulfillmentOrderSet;
 
+    @Test
+    public void getData(){
+        AmazonSellerFulfillmentOrderQueryParam param = new AmazonSellerFulfillmentOrderQueryParam();
+        param.setResendDate(Date.valueOf("2022-04-18"));
+        List<AmazonSellerFulfillmentOrder> orders = amazonSellerFulfillmentOrderSet.getAllAmazonSellerFulfillmentOrders(param);
+        System.out.println("数据条数："+orders.size());
+    }
 
     @Test
     public void mybatisCache(){

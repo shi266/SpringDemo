@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BootStrapTable</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+
+    <script src="jquery-3.4.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+</head>
+<body>
+<div class="page-header">
+    <h1>bootStrap-table
+        <small>获取数据</small>
+    </h1>
+</div>
+<hr>
+
+
+<table id="tableData"
+       data-toggle="table"
+            data-url="getUsersall"
+            data-pagination="true"
+            data-search="true"
+            data-side-pagination="client"
+       data-page-number="1"
+       data-page-size="4"
+            data-pagination-first-text="首页"
+            data-pagination-pre-text="上一页"
+            data-pagination-next-text="下一页"
+>
+
+    <thead>
+        <tr>
+            <div>
+                这是一个框
+            <th data-field="id" data-formatter="getID">ID</th>
+            <th data-field="username" >UserName</th>
+            <th data-field="password">Password</th>
+            <th data-field="address">Address</th>
+            <th  data-align="center" data-formatter="toDelete" data-width="240px">操作</th>
+            </div>
+        </tr>
+    </thead>
+
+
+</table>
+<script>
+    function getID(value, row, index) {
+        console.log('value:'+value)
+        console.log('row:'+row.username)
+        console.log('index:'+index)
+        return value
+
+
+    }
+    function toDelete(value, row, index) {
+        console.log('value:'+value)
+        console.log('row:'+row.username)
+        console.log('index:'+index)
+        return ''+
+            '<a> <button class="btn btn-info btn-sm" onclick="deleteById('+row.id+')">删除</button></a>' +
+            '<a> <button class="btn btn-primary btn-sm" onclick="deleteById('+row.id+')">修改</button></a>' +
+            '<a> <button class="btn btn-danger btn-sm"  onclick="deleteById('+row.id+')">查看</button></a>'
+
+
+    }
+</script>
+<!--        <script>-->
+<!--            $("#tableData").bootstrapTable({-->
+<!--                url: 'getUsersall',-->
+<!--                pagination: true,-->
+<!--                search: true,-->
+<!--                sidePagination: "client",-->
+<!--                paginationPreText:'上一页',-->
+<!--                pageSize: 3,-->
+<!--                //初始化加载第1页，默认第1页-->
+<!--                pageNumber: 1,-->
+<!--                showFooter:true,-->
+<!--                showRefresh:true,//刷新-->
+<!--                showToggle:true,//切换视图-->
+<!--                showFullscreen:true,//全屏-->
+<!--                clickToSelect:true,//全屏-->
+
+<!--                可供选择的每页的行-->
+<!--                columns: [{-->
+<!--                    field: 'id',-->
+<!--                    title: 'ID'-->
+<!--                }, {-->
+<!--                    field: 'username',-->
+<!--                    title: 'UserName'-->
+<!--                }, {-->
+<!--                    field: 'password',-->
+<!--                    title: 'Password'-->
+<!--                } ,{-->
+<!--                    field: 'address',-->
+<!--                    title: 'Address'-->
+<!--                } ,{-->
+<!--                    title:'操作',-->
+
+<!--                }]-->
+<!--            })-->
+<!--        </script>-->
+
+
+</body>
+</html>
