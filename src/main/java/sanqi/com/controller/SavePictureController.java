@@ -21,7 +21,6 @@ public class SavePictureController {
 
     @PostMapping("/saveImg")
     public String uploadImg(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-
         String fileName = file.getOriginalFilename();
         String filePath = "D:/savePic/demo/";
         if (file.isEmpty()) {

@@ -1,5 +1,7 @@
 package sanqi.com.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import sanqi.com.entity.People;
 import sanqi.com.entity.User;
 import sanqi.com.mapper.LoginMapper;
 import sanqi.com.mapper.UserMapper;
@@ -35,6 +37,8 @@ public class UserController {
 
     @Resource
     private RedisService redisService;
+    @Autowired
+    private People people;
 
     @Resource
     private RedisTemplate<String, String> redisTemplate;
@@ -46,7 +50,16 @@ public class UserController {
         return  returnJSON;
     }
 
-
+    @GetMapping("/people")
+    @ResponseBody
+    public ReturnJSON people(ReturnJSON returnJSON){
+        System.out.println("sssssssssssss");
+        System.out.println("Username: "+people.getUsername());
+        System.out.println("Password: "+people.getPassword());
+        System.out.println("Tell: "+people.getTell());
+        returnJSON.setData(people);
+        return returnJSON;
+    }
 
     @ResponseBody
     @RequestMapping("/sanqi/uploadExcel")
@@ -190,7 +203,6 @@ public class UserController {
         returnJSON.setSuccess(result);
 
            returnJSON.setData(result?"修改成功":"修改失败");
-
 
         return returnJSON;
 
