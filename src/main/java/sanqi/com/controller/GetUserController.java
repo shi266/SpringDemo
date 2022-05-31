@@ -1,5 +1,7 @@
 package sanqi.com.controller;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import sanqi.com.Page.BasePage;
 import sanqi.com.entity.*;
 import sanqi.com.mapper.AmazonSellerFulfillmentOrderSet;
@@ -32,7 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
-public class GetUserController implements SchedulingConfigurer {
+public class GetUserController {
 
     @Autowired
     GetUserMapper getUserMapper;
@@ -41,6 +43,9 @@ public class GetUserController implements SchedulingConfigurer {
 
     @Resource
     private Person person;
+
+    @Resource
+    private SqlSessionFactory sqlSessionFactory;
 //    @Autowired
 //    private LoginMapper userMapper;
 
@@ -72,6 +77,13 @@ public class GetUserController implements SchedulingConfigurer {
     @GetMapping("/getUsersall")
     @ResponseBody
     public List getUser(ReturnPageJson returnJSON, User user, BasePage basePage, HttpSession session){
+//        SqlSession session1 = sqlSessionFactory.openSession(true);
+//        GetUserMapper mapper = session1.getMapper(GetUserMapper.class);
+//
+//        mapper.getAll(user);
+//        mapper.getAll(user);
+
+
         //返回json数据
         System.out.println("获取数据：getUsersall");
         returnJSON.setSuccess(true);
@@ -269,23 +281,23 @@ public class GetUserController implements SchedulingConfigurer {
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
       System.out.println(sdf.format(new Date())+":\t每10秒执行一次,这是第"+(num++)+"次");
   }
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-
-        taskRegistrar.addTriggerTask(new Runnable() {
-            @Override
-            public void run() {
-
-//                each();
-            }
-        }, new Trigger() {
-            @Override
-            public Date nextExecutionTime(TriggerContext triggerContext) {
-                Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.SECOND,10);
-                Date nextDate = new Date(cal.getTimeInMillis());
-                return nextDate;
-            }
-        });
-    }
+//    @Override
+//    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+//
+//        taskRegistrar.addTriggerTask(new Runnable() {
+//            @Override
+//            public void run() {
+//
+////                each();
+//            }
+//        }, new Trigger() {
+//            @Override
+//            public Date nextExecutionTime(TriggerContext triggerContext) {
+//                Calendar cal = Calendar.getInstance();
+//                cal.add(Calendar.SECOND,10);
+//                Date nextDate = new Date(cal.getTimeInMillis());
+//                return nextDate;
+//            }
+//        });
+//    }
 }

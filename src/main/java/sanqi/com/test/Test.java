@@ -10,24 +10,80 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 public class Test {
-    public Info demo(){
-        Info info = new Info();
-        info.setName("Demo");
-        return info;
 
-    }
 
     public static void main(String[] args) throws IOException, NoSuchMethodException, ParseException {
 
 
-        String path = "D:\\savePic\\demoerror.jpg";
+        String aa = "abcd";
+        String bb = "efg";
+        String cc = aa + bb;
+        System.out.println(cc);
+
+      HashMap<String, String> map = new HashMap<>();
+      map.put("aa","aaA");
+      Map<String, String> map1 = new HashMap<>();
+      map1.put("aa","aaA");
+
+        int number = -100;
+        System.out.println("100:    "+Integer.toBinaryString(100));
+        System.out.println("-100:   "+Integer.toBinaryString(number));
+        System.out.println("左移:    "+Integer.toBinaryString(number << 4));
+        System.out.println("右移:    "+Integer.toBinaryString(number >> 4));
+        System.out.println("无符号右移:"+Integer.toBinaryString(number >>> 4));
+     /*   List<Blank> blanks = new ArrayList<>();
+        long a = System.currentTimeMillis();
+        for (int i = 0; i < 2<<23; i++) {
+            blanks.add(new Blank("aa",(i+1)));
+        }
+        long b = System.currentTimeMillis();
+        System.out.println("消耗时间："+(b-a));
+
+
+        List<Blank> blanks2 = new ArrayList<>(2<<24);
+        long a1 = System.currentTimeMillis();
+        for (int i = 0; i < 2<<23; i++) {
+            blanks2.add(new Blank("aa",(i+1)));
+        }
+        long b1 = System.currentTimeMillis();
+        System.out.println("消耗时间："+(b1-a1));*/
+/*
+
+        ArrayList<Blank> list = new ArrayList<Blank>();
+            list.add(new Blank("aa",34));
+            list.add(new Blank("bb",56));
+            list.add(new Blank("cc",24));
+        ArrayList<Blank> listCopy = (ArrayList<Blank>) list.clone();
+
+        listCopy.get(0).setNum(66);
+        listCopy.get(0).setName("佛祖");
+
+
+        for (Blank s : listCopy) {
+            if(s.getName().equals("bb")){
+                s.setNum(1999);
+            }
+            System.out.println(s);
+        }
+        System.out.println("----------------------");
+        for (Blank s : list) {
+
+            System.out.println(s);
+        }
+
+*/
+
+        /*String path = "D:\\savePic\\demoerror.jpg";
         String path2 = "D:\\savePic";
         String save = "C:\\Users\\Administrator\\Desktop";
         File file = new File(path);
-
+*/
 //        _E__project_sqe_WEB-INF_classes_amazonProductPackagePartDesign_US_         sms-videoinstruction-001-   .zip
 
 

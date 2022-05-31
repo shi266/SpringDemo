@@ -14,7 +14,7 @@
         <result property="address" column="address"></result>
 
     </resultMap>-->
-
+<cache readOnly="true"></cache>
     <select id="getAll" parameterType="sanqi.com.entity.User" resultType="sanqi.com.entity.User">
         select * from user
             <where>

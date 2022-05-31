@@ -30,7 +30,7 @@ public class Mybatis {
     * mybatis缓存
     *   一级缓存、二级缓存
     *
-    * 一级缓存：session级别，cache只在session内部共享，当多次执行sql语句、参数相同且在同一个namespace下，从缓冲中获取数据
+    * 一级缓存：sqlsession级别，cache只在session内部共享，当多次执行sql语句、参数相同且在同一个namespace下，从缓冲中获取数据
     * 当执行DML（insert、delete、update）操作时，缓存刷新（相当于清空），下次执行查询操作时从数据库查询数据，然后查询到的数据添加到一级缓存中。
     *
     * 二级缓存：mapper级别（同一个namespace下），session共享，默认关闭，相当于一个全局变量，开启二级缓存需要全局配置，指定命名空间，（单表查询<cache/>,
@@ -71,7 +71,16 @@ public class Mybatis {
         SqlSession session = sqlSessionFactory.openSession();
         LoginMapper mapper = session.getMapper(LoginMapper.class);
         for (int i = 0; i < 3; i++) {
+            System.out.println("------------- "+(i+1));
+            if(i==2){
+                user = new User();
+                user.setUsername("test");
+                user.setPassword("testAddress");
+                user.setId(103);
+                loginMapper.updateById(user);
+            }
             User u = loginMapper.valiteLogin(user);
+
             System.out.println(u);
         }
     }
@@ -83,17 +92,25 @@ public class Mybatis {
         LoginMapper mapper1 = session1.getMapper(LoginMapper.class);
         LoginMapper mapper2 = session2.getMapper(LoginMapper.class);
 
-        User user1 = mapper1.getById(102);
-        session1.commit();
+        User user1 = mapper1.getById(103);
+        System.out.println(user1);
+//        session1.commit();
+//        session1.close();
+////        User user = mapper1.getById(101);
+//        User user2 = mapper2.getById(101);
+//        User user3 = mapper2.getById(101);
+//        User user4 = mapper2.getById(101);
+//        User user5 = mapper2.getById(101);
         u.setUsername("李四2");
         u.setPassword("islisi");
         u.setAddress("canada");
-        u.setId(102);
+        u.setId(103);
         mapper2.updateById(u);
-        session1.commit();
-        User user = mapper1.getById(102);
-        session1.commit();
-        User user2 = mapper2.getById(102);
+        session2.commit();
+        User user = mapper2.getById(103);
+        System.out.println(user);
+//        session1.commit();
+//        User user3 = mapper2.getById(101);
 
 
 

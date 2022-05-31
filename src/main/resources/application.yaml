@@ -45,7 +45,7 @@ logging:
   file:
     path: D:\IJProjects\SpringDemo\log
   level:
-    com.example.springdemo.com.mapper: debug
+    sanqi.com.mapper: debug
 
 person:
   username: "张三"

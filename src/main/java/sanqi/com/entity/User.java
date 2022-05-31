@@ -32,16 +32,16 @@ public class User extends BasePage implements Serializable {
         this.addDate = addDate;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + id +
-//                ", username='" + username + '\'' +
-//                ", password='" + password + '\'' +
-//                ", address='" + address + '\'' +
-//                ", addDate=" + addDate +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", addDate=" + addDate +
+                '}';
+    }
 
     public User() {
         super();
